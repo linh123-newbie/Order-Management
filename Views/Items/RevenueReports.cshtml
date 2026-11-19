@@ -1,0 +1,36 @@
+@model List<OrderManagement.Models.DTOs.RevenueReportDto>
+
+@{
+    @* ViewData["Title"] = "Update Order"; *@
+}
+
+<div class="container-fluid p-2">
+  <h2>Revenue reports per day</h2>
+  @if (!Model.Any())
+  {
+    <p class="text-center">Không có dữ liệu</p>
+  }
+  else
+  {
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Order Date</th>
+      <th scope="col">Derived Orders</th>
+      <th scope="col">Total Revenue</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var report in Model)
+    {
+        <tr>
+            <td>@(report.CreatedAt?.ToString("dd-MM-yyyy") ?? "No Date")</td>
+            <td>@report.DerivedOrders</td>
+            <td>@report.TotalRevenue.ToString("C")</td>
+        </tr>
+    }
+    
+  </tbody>
+</table>
+  }
+</div>
